@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu du Futur Simple: Vrai ou Faux</title>
+    <title>Jeu du Futur Proche: Vrai ou Faux</title>
     <style>
         /* General Styles */
         body {
@@ -91,7 +91,7 @@
     </style>
 </head>
 <body>
-    <h1>Jeu du Futur Simple: Vrai ou Faux</h1>
+    <h1>Jeu du Futur Proche: Vrai ou Faux</h1>
     <div class="question-box">
         <p class="question" id="question">Cliquez sur le bouton pour commencer le jeu!</p>
         <div class="options">
@@ -103,23 +103,23 @@
     </div>
 
     <script>
-        // Questions for the game
+        // Futur Proche Questions
         const questions = [
-            { question: "Demain, je irai à l'école.", isCorrect: true },
-            { question: "Nous serons en vacances bientôt.", isCorrect: true },
-            { question: "Elle fait ses devoirs demain.", isCorrect: false },
-            { question: "Ils auront une voiture l'année prochaine.", isCorrect: true },
-            { question: "Vous pouvez venir à la fête.", isCorrect: false },
-            { question: "Nous saurons la réponse bientôt.", isCorrect: true },
-            { question: "Je vois mes amis ce weekend.", isCorrect: false },
-            { question: "Tu enverras une lettre demain.", isCorrect: true },
-            { question: "Ils viendront chez nous après-demain.", isCorrect: true },
-            { question: "Nous mangeons au restaurant ce soir.", isCorrect: false },
-            { question: "Je prendrai le train demain matin.", isCorrect: true },
-            { question: "Vous lirez ce livre bientôt.", isCorrect: true },
-            { question: "Elle dormira tôt ce soir.", isCorrect: true },
-            { question: "Nous partirons en voyage demain.", isCorrect: true },
-            { question: "Ils achètent une maison l'année prochaine.", isCorrect: false }
+            { question: "Je vais manger une pomme.", isCorrect: true },
+            { question: "Nous allons partir demain.", isCorrect: true },
+            { question: "Elle va chanté une chanson.", isCorrect: false },
+            { question: "Ils vont aller à la plage.", isCorrect: true },
+            { question: "Vous allez finir vos devoirs.", isCorrect: true },
+            { question: "Nous allons regardons un film.", isCorrect: false },
+            { question: "Je vais aller au marché.", isCorrect: true },
+            { question: "Tu vas étudier ce soir.", isCorrect: true },
+            { question: "Ils vont mangent au restaurant.", isCorrect: false },
+            { question: "Elle va danser demain soir.", isCorrect: true },
+            { question: "Nous allons prendre le train.", isCorrect: true },
+            { question: "Je vais écrire un livre.", isCorrect: true },
+            { question: "Vous allez regardez la télé.", isCorrect: false },
+            { question: "Ils vont jouent au football.", isCorrect: false },
+            { question: "Tu vas voyager en France.", isCorrect: true }
         ];
 
         let currentQuestionIndex = 0;
@@ -135,7 +135,7 @@
         function askQuestion() {
             const questionElement = document.getElementById('question');
             const feedbackElement = document.getElementById('feedback');
-            
+
             feedbackElement.textContent = ""; // Clear feedback
 
             if (currentQuestionIndex < questions.length) {
