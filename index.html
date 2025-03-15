@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu du Futur Simple: Vrai ou Faux</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+            background-size: 800% 800%;
+            animation: moveGradient 12s ease infinite;
+            color: white;
+            text-align: center;
+        }
+
+        @keyframes moveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .question-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .option {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ff6f61;
+            color: white;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .option:hover {
+            background-color: #ff4c3b;
+            transform: scale(1.1);
+        }
+
+        .score {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .correct {
+            color: #4CAF50;
+        }
+
+        .incorrect {
+            color: #FF5722;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jeu du Futur Simple: Vrai ou Faux</h1>
+    <div class="question-box">
+        <p class="question" id="question">Cliquez sur le bouton pour commencer le jeu!</p>
+        <div class="options">
+            <button class="option" onclick="checkAnswer(true)">Vrai</button>
+            <button class="option" onclick="checkAnswer(false)">Faux</button>
+        </div>
+        <p class="feedback" id="feedback"></p>
+        <p class="score" id="score">Score: 0</p>
+    </div>
+
+    <script>
+        // Questions for the game
+        const questions = [
+            { question: "Demain, je irai à l'école.", isCorrect: true },
+            { question: "Nous serons en vacances bientôt.", isCorrect: true },
+            { question: "Elle fait ses devoirs demain.", isCorrect: false },
+            { question: "Ils auront une voiture l'année prochaine.", isCorrect: true },
+            { question: "Vous pouvez venir à la fête.", isCorrect: false },
+            { question: "Nous saurons la réponse bientôt.", isCorrect: true },
+            { question: "Je vois mes amis ce weekend.", isCorrect: false },
+            { question: "Tu enverras une lettre demain.", isCorrect: true },
+            { question: "Ils viendront chez nous après-demain.", isCorrect: true },
+            { question: "Nous mangeons au restaurant ce soir.", isCorrect: false },
+            { question: "Je prendrai le train demain matin.", isCorrect: true },
+            { question: "Vous lirez ce livre bientôt.", isCorrect: true },
+            { question: "Elle dormira tôt ce soir.", isCorrect: true },
+            { question: "Nous partirons en voyage demain.", isCorrect: true },
+            { question: "Ils achètent une maison l'année prochaine.", isCorrect: false }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function startGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            updateScore();
+            askQuestion();
+        }
+
+        function askQuestion() {
+            const questionElement = document.getElementById('question');
+            const feedbackElement = document.getElementById('feedback');
+            
+            feedbackElement.textContent = ""; // Clear feedback
+
+            if (currentQuestionIndex < questions.length) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionElement.textContent = currentQuestion.question;
+            } else {
+                questionElement.textContent = "Jeu terminé! Félicitations!";
+                document.getElementById('feedback').textContent = "";
+            }
+        }
+
+        function checkAnswer(playerAnswer) {
+            const feedbackElement = document.getElementById('feedback');
+            const currentQuestion = questions[currentQuestionIndex];
+
+            if (playerAnswer === currentQuestion.isCorrect) {
+                feedbackElement.textContent = "Correct! 🎉";
+                feedbackElement.className = "feedback correct";
+                score++;
+                updateScore();
+            } else {
+                feedbackElement.textContent = "Incorrect! 😢";
+                feedbackElement.className = "feedback incorrect";
+            }
+
+            currentQuestionIndex++;
+            setTimeout(askQuestion, 1000); // Delay for feedback
+        }
+
+        function updateScore() {
+            const scoreElement = document.getElementById('score');
+            scoreElement.textContent = `Score: ${score}`;
+        }
+
+        // Start the game on load
+        startGame();
+    </script>
+</body>
+</html>
